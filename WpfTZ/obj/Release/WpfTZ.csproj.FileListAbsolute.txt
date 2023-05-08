@@ -29,6 +29,5 @@ C:\Users\hp\source\repos\WpfTZ\WpfTZ\WPF_TestWork\WpfTZ\obj\Release\WpfTZ.g.reso
 C:\Users\hp\source\repos\WpfTZ\WpfTZ\WPF_TestWork\WpfTZ\obj\Release\WpfTZ.Properties.Resources.resources
 C:\Users\hp\source\repos\WpfTZ\WpfTZ\WPF_TestWork\WpfTZ\obj\Release\WpfTZ.csproj.GenerateResource.cache
 C:\Users\hp\source\repos\WpfTZ\WpfTZ\WPF_TestWork\WpfTZ\obj\Release\WpfTZ.csproj.CoreCompileInputs.cache
-C:\Users\hp\source\repos\WpfTZ\WpfTZ\WPF_TestWork\WpfTZ\obj\Release\WpfTZ.csproj.CopyComplete
 C:\Users\hp\source\repos\WpfTZ\WpfTZ\WPF_TestWork\WpfTZ\obj\Release\WpfTZ.exe
 C:\Users\hp\source\repos\WpfTZ\WpfTZ\WPF_TestWork\WpfTZ\obj\Release\WpfTZ.pdb
