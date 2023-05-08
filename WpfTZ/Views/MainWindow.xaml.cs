@@ -25,7 +25,13 @@ namespace WpfTZ.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ManagerVM();
+            DataContext = ManagerVM.Instance;
+            ManagerVM.Instance.MainPopup = new PopupMessage(MessagePopup);
+        }
+        private void DragWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

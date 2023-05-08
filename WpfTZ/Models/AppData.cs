@@ -1,7 +1,7 @@
 ﻿
 namespace WpfTZ.Models
 {
-    public class User
+    public class AppData
     {
         public int Id { get; set; }
         public string name { get; set; }

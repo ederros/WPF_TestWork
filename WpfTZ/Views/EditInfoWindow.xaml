@@ -1,4 +1,4 @@
-﻿<Window x:Class="WpfTZ.Views.AddInfoWindow"
+﻿<Window x:Class="WpfTZ.Views.EditInfoWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfTZ.Views"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="AddInfoWindow" x:Name="AddInfoWin" Height="120" Width="300" ResizeMode="NoResize">
+        Title="EditInfoWindow" x:Name="EditInfoWin" Height="140" Width="300" ResizeMode="NoResize">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF44475A" Offset="0"/>
@@ -25,6 +25,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Border Panel.ZIndex="1" MouseDown="DragWindow" x:Name="WindowHeader" Grid.ColumnSpan="2">
@@ -35,37 +36,45 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Label Grid.Row="1" 
-               HorizontalAlignment="Center" VerticalAlignment="Center"
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" 
+               Grid.Row="2"
                Foreground="#f8f8f2">
             Choose user:
         </Label>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Row="2"
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" 
+               Grid.Row="1"
                Foreground="#f8f8f2">
-            Choose application:
+            Write id:
         </Label>
         <Label HorizontalAlignment="Center" VerticalAlignment="Center"
                Grid.Row="3"
                Foreground="#f8f8f2">
+            Choose application:
+        </Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="4"
+               Foreground="#f8f8f2">
             Write comment:
         </Label>
-        <ComboBox Grid.Column="1" Grid.Row="1" x:Name="userNameBox">
-            
-        </ComboBox>
-        <ComboBox Grid.Column="1" Grid.Row="2" x:Name="appNameBox">
-            
-        </ComboBox>
-
-        <TextBox Grid.Column="1" Grid.Row="3" x:Name="commentBox"  VerticalContentAlignment="Center">
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="IdBox" VerticalContentAlignment="Center" TextChanged="OnIdChanged">
             
         </TextBox>
+        <ComboBox Grid.Column="1" x:Name="userNameBox" Grid.Row="2">
 
-        <Button Grid.Row="4" Grid.Column="0" Content="Add" Command="{Binding AddInfo}"
-                CommandParameter="{Binding ElementName=AddInfoWin}"
+        </ComboBox>
+        <ComboBox Grid.Column="1" Grid.Row="3" x:Name="appNameBox">
+
+        </ComboBox>
+
+        <TextBox Grid.Column="1" Grid.Row="4" x:Name="commentBox" VerticalContentAlignment="Center">
+
+        </TextBox>
+
+        <Button Grid.Row="5" Grid.Column="0" Content="Edit" Command="{Binding EditInfo}"
+                CommandParameter="{Binding ElementName=EditInfoWin}"
                 Style="{StaticResource DefaultButton}"/>
-        <Button Grid.Row="4" Grid.Column="1" Content="Cancel" Command="{Binding CancelBtnClick}"
-                CommandParameter="{Binding ElementName=AddInfoWin}"
+        <Button Grid.Row="5" Grid.Column="1" Content="Cancel" Command="{Binding CancelBtnClick}"
+                CommandParameter="{Binding ElementName=EditInfoWin}"
                 Style="{StaticResource DefaultButton}"/>
     </Grid>
 </Window>

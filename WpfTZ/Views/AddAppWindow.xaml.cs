@@ -23,5 +23,15 @@ namespace WpfTZ.Views
         {
             InitializeComponent();
         }
+        private void DragWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

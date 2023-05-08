@@ -5,23 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTZ.Views"
         mc:Ignorable="d"
-        Title="AddUserWindow" Height="100" Width="300" ResizeMode="NoResize">
+        WindowStyle="None"
+        Title="AddUserWindow" x:Name="AddUserWin" Height="70" Width="300" ResizeMode="NoResize">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF44475A" Offset="0"/>
+            <GradientStop Color="#FF282A36" Offset="1"/>
+
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
+        <Border Panel.ZIndex="1" MouseDown="DragWindow" x:Name="WindowHeader" Grid.ColumnSpan="2">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint = "0,1">
+                    <GradientStop Color ="#FF44475A" Offset ="0"/>
+                    <GradientStop Color="#6272a4" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
 
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Grid.Row="1" 
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Foreground="#f8f8f2">
             Enter a name of new user:
         </Label>
-        <TextBox Grid.Column="1">
+        <TextBox Grid.Row="1" x:Name="NameBox" Grid.Column="1"  VerticalContentAlignment="Center">
         </TextBox>
-        <Button Grid.Row="2" Grid.Column="0" Content="Add"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Cancel"/>
+        <Button Grid.Row="2" Grid.Column="0" 
+                Content="Add" 
+                Command="{Binding  AddUser}"
+                CommandParameter="{Binding ElementName=AddUserWin}"
+                Style="{StaticResource DefaultButton}"/>
+        <Button Grid.Row="2" Grid.Column="1" 
+                Content="Cancel"
+                Command="{Binding CancelBtnClick}"
+                CommandParameter="{Binding ElementName=AddUserWin}"
+                Style="{StaticResource DefaultButton}"/>
     </Grid>
 </Window>

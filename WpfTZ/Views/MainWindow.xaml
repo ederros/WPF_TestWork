@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         AllowsTransparency="True"
         WindowStyle="None"
+        x:Name="MainWin"
+        ResizeMode="NoResize"
         Title="MainWindow" Height="400" Width="600" MinWidth="600" MinHeight="300">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -15,64 +17,117 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid Background="#00000000">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
+        <Border Panel.ZIndex="1" MouseDown="DragWindow" x:Name="WindowHeader">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint = "0,1">
+                    <GradientStop Color ="#FF44475A" Offset ="0"/>
+                    <GradientStop Color="#6272a4" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             
-        </StackPanel>
-        
-        <TabControl Grid.Column="0" Grid.Row="1" BorderThickness="1,1,0,0" Background="#00000000">
-            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="20" 
+                    Background=" #ff5555" 
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Command="{Binding CancelBtnClick}"
+                    CommandParameter="{Binding ElementName=MainWin}">
+                    X
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <TabControl Grid.Column="0" Grid.Row="1" 
+                    BorderThickness="1,1,0,0" 
+                    Background="#00000000">
             <TabItem Header="Users">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                    <Button Width="80" Height="30">
-                        Add user
-                    </Button>
-                    <Button Width="80" Height="30">
-                        Sub user
-                    </Button>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="154"/>
+                        <ColumnDefinition Width="1.2"/>
+                        <ColumnDefinition Width="244.4"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid
+                              HeadersVisibility="Column"
+                              Grid.Column="3"
+                              IsReadOnly="True"
+                              Background="#44475a" ItemsSource="{Binding AllUsers}" Margin="0,0,0.2,-0.2"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0,0,0,-0.2">
+                        <Button Width="80" Height="30" Style="{StaticResource DefaultButton}" Command="{Binding OpenAddUserWindow}">
+                            Add user
+                        </Button>
+                        <Button Width="80" Height="30" Style="{StaticResource DefaultButton}" Command="{Binding OpenSubUserWindow}">
+                            Sub user
+                        </Button>
+                    </StackPanel>
+                </Grid>
 
             </TabItem>
             <TabItem Header="Applications">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                    <Button Width="80" Height="30">
-                        Add App
-                    </Button>
-                    <Button Width="80" Height="30">
-                        Sub App
-                    </Button>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid 
+                                HeadersVisibility="Column"
+                                Grid.Column="1" Grid.Row="1"
+                                IsReadOnly="True"
+                                Background="#44475a" ItemsSource="{Binding AllApps}">
+                    </DataGrid>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                        <Button Width="80" Height="30" Style="{StaticResource DefaultButton}" Command="{Binding OpenAddAppWindow}">
+                            Add App
+                        </Button>
+                        <Button Width="80" Height="30" Style="{StaticResource DefaultButton}" Command="{Binding OpenSubAppWindow}">
+                            Sub App
+                        </Button>
+                    </StackPanel>
+                </Grid>
             </TabItem>
             <TabItem Header="Information">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                    <Button Width="80" Height="30">
-                        Add Info
-                    </Button>
-                    <Button Width="80" Height="30">
-                        Sub Info
-                    </Button>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="66.1"/>
+                        <ColumnDefinition Width="133.9"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid
+                              HeadersVisibility="Column"
+                              Grid.Column="2"
+                              IsReadOnly="True"
+                              Background="#44475a" ItemsSource="{Binding AllInfo}" Margin="0,0,0.2,-0.2"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="0,0,0,-0.2">
+                        <Button Width="80" Height="30" Style="{StaticResource DefaultButton}" Command="{Binding OpenAddInfoWindow}">
+                            Add info
+                        </Button>
+                        <Button Width="80" Height="30" Style="{StaticResource DefaultButton}" Command="{Binding OpenSubInfoWindow}">
+                            Sub info
+                        </Button>
+                        <Button Width="80" Height="30" Style="{StaticResource DefaultButton}" Command="{Binding OpenEditInfoWindow}">
+                            Edit info
+                        </Button>
+                    </StackPanel>
+                </Grid>
             </TabItem>
         </TabControl>
 
-        <ListView Grid.Column="1" Grid.Row="1" Background="#44475a">
-            <ListView.View>
-                <GridView/>
-            </ListView.View>
-        </ListView>
+
         <Label x:Name="MessagePopup" 
                Grid.Row="1"
                Grid.ColumnSpan="2"
-               Height="60" Width="300"
+               Height="0" Width="300" MaxHeight="60"
                Background="#a8ffb86c" 
                Panel.ZIndex="10" 
                HorizontalAlignment="Center" 
@@ -86,7 +141,6 @@
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
                 <Storyboard>
-
                     <DoubleAnimation Duration="0:0:1" Storyboard.TargetProperty="Opacity" From="0" To="1"/>
                 </Storyboard>
             </BeginStoryboard>

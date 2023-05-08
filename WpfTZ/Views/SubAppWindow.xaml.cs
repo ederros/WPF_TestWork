@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WpfTZ.Views
 {
     /// <summary>
-    /// Логика взаимодействия для AddUserWindow.xaml
+    /// Логика взаимодействия для SubAppWindow.xaml
     /// </summary>
-    public partial class AddUserWindow : Window
+    public partial class SubAppWindow : Window
     {
-        public AddUserWindow()
+        public SubAppWindow()
         {
             InitializeComponent();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using WpfTZ.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,17 @@ using System.Windows.Shapes;
 namespace WpfTZ.Views
 {
     /// <summary>
-    /// Логика взаимодействия для AddUserWindow.xaml
+    /// Логика взаимодействия для EditInfoWindow.xaml
     /// </summary>
-    public partial class AddUserWindow : Window
+    public partial class EditInfoWindow : Window
     {
-        public AddUserWindow()
+        public EditInfoWindow()
         {
             InitializeComponent();
+        }
+        private void OnIdChanged(object sender, EventArgs e)
+        {
+           ManagerVM.Instance.FillInfoFieldsById(this, IdBox.Text);
         }
         private void DragWindow(object sender, MouseButtonEventArgs e)
         {

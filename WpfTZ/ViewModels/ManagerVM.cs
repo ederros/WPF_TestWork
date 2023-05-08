@@ -1,58 +1,73 @@
 ﻿using WpfTZ.Models;
-using System;
+using WpfTZ.Views;
+using System.Windows;
 using System.ComponentModel;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WpfTZ.ViewModels
 {
-    public class ManagerVM : INotifyPropertyChanged
+    public partial class ManagerVM : INotifyPropertyChanged
     {
-        public ManagerVM()
+        public PopupMessage MainPopup;
+
+       
+        private static ManagerVM instance;
+        public static ManagerVM Instance
         {
-            allUsers = DB_Worker.GetAllUsers();
-            allApps = DB_Worker.GetAllApps();
-            allInfo = DB_Worker.GetAllInfo();
-        }
-        private List<User> allUsers;
-        public List<User> AllUsers
-        {
-            get { return allUsers; }
-            set
+            get
             {
-                allUsers = value;
-                NotifyPropertyChanged("AllUsers");
+                if (instance == null) instance = new ManagerVM();
+                return instance;
             }
         }
-        private List<Application> allApps;
-        public List<Application> AllApps
+        public void ReceiveMessage(Message message)
         {
-            get { return allApps; }
-            set
+            //MessageBox.Show("message");
+            MainPopup.Show(message);
+            
+        }
+       
+        private ManagerVM() { }
+
+        #region WINDOW MANIPULATION
+
+        private Window secondWindow;
+        public void OpenWindow(Window win)
+        {
+            OpenWindow(win, this);
+        }
+
+        public void OpenWindow(Window win, object context)
+        {
+            secondWindow?.Close();
+            secondWindow = win;
+            win.DataContext = this;
+            win.Owner = Application.Current.MainWindow;
+            win.Show();
+            win.Activate();
+        }
+
+        private RelayCommand cancelBtnClick;
+        public RelayCommand CancelBtnClick
+        {
+            get
             {
-                allApps = value;
-                NotifyPropertyChanged("AllApps");
+                return cancelBtnClick ?? (cancelBtnClick = new RelayCommand(obj =>
+                {
+                    Window win = (obj as Window);
+                    win.Close();
+                }));
             }
         }
-        private List<Information> allInfo;
-        public List<Information> AllInfo
-        {
-            get { return allInfo; }
-            set
-            {
-                allInfo = value;
-                NotifyPropertyChanged("AllInfo");
-            }
-        }
+
+        #endregion
+
+       
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this,new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(propertyName));
         }
     }
 }

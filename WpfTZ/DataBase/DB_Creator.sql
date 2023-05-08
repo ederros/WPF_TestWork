@@ -23,9 +23,9 @@ CREATE TABLE information(
 INSERT INTO users(name) VALUES ('Vasya');
 INSERT INTO users(name) VALUES ('Vova');
 
-INSERT INTO applications(name) VALUES ('Roblox');
-INSERT INTO applications(name) VALUES ('Minecraft');
+INSERT INTO applications(name) VALUES ('MyProject1');
+INSERT INTO applications(name) VALUES ('MyProject2');
 
-INSERT INTO information(userName, appName, comment) VALUES ('Vasya', 'Minecraft', 'Vasya make Minecraft');
-INSERT INTO information(userName, appName, comment) VALUES ('Vova', 'Roblox', 'Vova make Roblox');
+INSERT INTO information(userName, appName, comment) VALUES ('Vasya', 'MyProject1', 'Vasya works on MyProject1');
+INSERT INTO information(userName, appName, comment) VALUES ('Vova', 'MyProject2', 'Vova works on MyProject2');
 

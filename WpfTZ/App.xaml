@@ -6,8 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/WpfTZ;component/Styles/ButtonStyle.xaml"/>
-                <ResourceDictionary Source="/WpfTZ;component/Styles/WindowStyle.xaml"/>
+                <ResourceDictionary Source="/WpfTZ;component/Styles/DefaultStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
